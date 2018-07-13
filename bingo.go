@@ -24,19 +24,6 @@ type Game struct {
 	Board  Board
 }
 
-func (game *Game) CheckBoard(number int) *State {
-	for i := 0; i < game.Board.Size.X; i++ {
-		for j := 0; j < game.Board.Size.Y; j++ {
-			if game.Board.Slots[i][j].Number == number {
-				return &game.Board.Slots[i][j]
-			}
-
-		}
-	}
-
-	return nil
-}
-
 func NewPlayer(name string) Player {
 	playerStruct := Player{Name: name}
 	return playerStruct
@@ -55,11 +42,23 @@ func NewBoard(player Player) Board {
 	}
 }
 
+func (game *Game) CheckBoard(number int) *State {
+	for i := 0; i < game.Board.Size.X; i++ {
+		for j := 0; j < game.Board.Size.Y; j++ {
+			if game.Board.Slots[i][j].Number == number {
+				return &game.Board.Slots[i][j]
+			}
+
+		}
+	}
+	return nil
+}
+
 func (g Game) Draw() int {
 	return rand.Intn(75) + 1
 }
 
-func (g *Game) CheckBingo() bool {
+func (g Game) CheckBingo() bool {
 	return false
 }
 

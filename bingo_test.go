@@ -13,9 +13,8 @@ func Test_CheckBoard_Input_RandomNumber_7_Shuold_Be_State_Symbol_o_And_Number_7(
 	randomNumber := 7
 	expected := State{Symbol: "-", Number: 7}
 
-	state := game.CheckBoard(randomNumber)
+	actual := *game.CheckBoard(randomNumber)
 
-	actual := *state
 	if expected != actual {
 		t.Errorf("Expectd %v but got %v", expected, actual)
 	}
