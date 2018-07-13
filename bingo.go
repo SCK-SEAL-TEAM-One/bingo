@@ -1,5 +1,7 @@
 package bingo
 
+import "math/rand"
+
 type Player struct {
 	Name string
 }
@@ -42,6 +44,15 @@ func NewBoard(player Player) Board {
 	}
 }
 
+func (g Game) Draw() int {
+	return rand.Intn(75) + 1
+}
+
 func (g *Game) CheckBingo() bool {
 	return false
+}
+
+func (g Game) GetWinner() string {
+
+	return g.Board.Player.Name
 }
