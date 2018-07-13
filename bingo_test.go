@@ -1,6 +1,8 @@
 package bingo
 
-import "testing"
+import (
+	"testing"
+)
 
 func Test_CheckBoard_Input_RandomNumber_7_Shuold_Be_State_Symbol_o_And_Number_7(t *testing.T) {
 	player := Player{Name: "Aey"}
@@ -11,9 +13,8 @@ func Test_CheckBoard_Input_RandomNumber_7_Shuold_Be_State_Symbol_o_And_Number_7(
 	randomNumber := 7
 	expected := State{Symbol: "-", Number: 7}
 
-	state := game.CheckBoard(randomNumber)
+	actual := *game.CheckBoard(randomNumber)
 
-	actual := *state
 	if expected != actual {
 		t.Errorf("Expectd %v but got %v", expected, actual)
 	}
@@ -31,7 +32,6 @@ func Test_NewPlayer_Input_Aey_Should_Be_Player_Aey(t *testing.T) {
 }
 func Test_NewBoard_Input_Player_Aey_Should_Be_Board_Player_Aey(t *testing.T) {
 	player := Player{Name: "Aey"}
-
 	expected := Board{
 		Player: Player{Name: "Aey"},
 		Size:   Size{X: 5, Y: 5},
@@ -44,10 +44,35 @@ func Test_NewBoard_Input_Player_Aey_Should_Be_Board_Player_Aey(t *testing.T) {
 	}
 }
 
+func Test_CheckBingo_Should_Be_True(t *testing.T) {
+	boardNumber := []int{7, 3, 12, 9, 1}
+	slots := make([][]State, 5)
+	for index := 0; index < 5; index++ {
+		slots[index] = make([]State, 5)
+		slots[index][0] = State{
+			Symbol: "O",
+			Number: boardNumber[index],
+		}
+	}
+	board := Board{
+		Slots:  slots,
+		Player: Player{},
+		Size:   Size{X: 5, Y: 5},
+	}
+	game := Game{Board: board}
+	expected := true
+
+	actual := game.CheckBingo()
+
+	if expected != actual {
+		t.Errorf("Should be %t but got %t", expected, actual)
+	}
+}
+
 func Test_Draw_Random_Between_1_To_75_Should_Be_57(t *testing.T) {
 	expected := 57
-
 	game := Game{}
+
 	actual := game.Draw()
 
 	if actual != expected {
@@ -58,8 +83,8 @@ func Test_Draw_Random_Between_1_To_75_Should_Be_57(t *testing.T) {
 
 func Test_Draw_Random_Between_1_To_75_Should_Be_13(t *testing.T) {
 	expected := 13
-
 	game := Game{}
+
 	actual := game.Draw()
 
 	if actual != expected {
@@ -110,6 +135,7 @@ func Test_GetWinner_Should_Be_Aey(t *testing.T) {
 		t.Errorf("expected %v but got %v ", expected, actual)
 	}
 }
+
 func Test_GetWinner_Should_Be_Aoi(t *testing.T) {
 	expected := "Aoi"
 	game := Game{
