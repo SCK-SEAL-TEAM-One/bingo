@@ -1,5 +1,7 @@
 package bingo
 
+import "math/rand"
+
 type Player struct {
 	Name string
 }
@@ -35,13 +37,22 @@ func (game *Game) CheckBoard(number int) *State {
 	return nil
 }
 
+func (g Game) Draw() int {
+
+	return rand.Intn(75) + 1
+}
+
+func NewPlayer(name string) Player {
+	playerStruct := Player{Name: name}
+	return playerStruct
+}
+
 func NewBoard(player Player) Board {
 	slots := make([][]State, 5)
-	slots[0] = []State{}
 	for index := 0; index < 5; index++ {
 		slots[index] = make([]State, 5)
 	}
-
+	slots[3][3].Symbol = "O"
 	return Board{
 		Slots:  slots,
 		Player: player,
