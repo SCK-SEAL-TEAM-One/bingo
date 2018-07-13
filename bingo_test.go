@@ -113,8 +113,13 @@ func Test_NewGame_Input_Aey_Should_Be_Board_Player_Aey(t *testing.T) {
 func Test_FillBoard_Input_Pointer_State_Should_Be_True(t *testing.T){
 	state := State{Symbol:"", Number: 15}
 	addressState := &state 
+	game := Game{
+		Board: Board{
+			Player: Player{Name: "Aoi"},
+		},
+	}
 	expected := true
-	actual := FillBoard(addressState)
+	actual := game.FillBoard(addressState)
 
 	if actual != expected || state.Symbol != "O" {
 		t.Errorf("Expected is %v but got %v", expected, actual)

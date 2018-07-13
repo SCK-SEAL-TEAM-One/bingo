@@ -47,7 +47,7 @@ func NewGame(player Player) Game {
 	return Game{Player: player, Board: NewBoard(player)}
 }
 
-func FillBoard(state *State) bool{
+func (g Game)FillBoard(state *State) bool{
 	if state.Symbol ==  "" {
 		state.Symbol = "O" 
 		return true 
