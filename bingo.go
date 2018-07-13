@@ -19,6 +19,10 @@ type Board struct {
 	Player Player
 	Size   Size
 }
+type Game struct {
+	Player
+	Board
+}
 
 func NewBoard(player Player) Board {
 	slots := make([][]State, 5)
@@ -31,4 +35,9 @@ func NewBoard(player Player) Board {
 		Player: player,
 		Size:   Size{X: 5, Y: 5},
 	}
+}
+
+func NewGame(player Player) Game {
+
+	return Game{Player: player, Board: NewBoard(player)}
 }

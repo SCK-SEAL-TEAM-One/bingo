@@ -17,3 +17,21 @@ func Test_NewBoard_Input_Player_Aey_Should_Be_Board_Player_Aey(t *testing.T) {
 	}
 
 }
+
+func Test_NewGame_Input_Aey_Should_Be_Board_Player_Aey(t *testing.T) {
+	playerName := Player{Name: "Aey"}
+	expected := Game{
+		Player: Player{
+			Name: "Aey",
+		}, 
+		Board: Board{
+			Player: Player{Name: "Aey"},
+		},
+	}
+
+	actual := NewGame(playerName)
+
+	if actual.Board.Player != expected.Board.Player {
+		t.Errorf("Expected is %v but got %v", expected, actual)
+	}
+}
