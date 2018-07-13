@@ -5,11 +5,6 @@
 
 ## HOW TO RUN PROGRAM
 ### Set Go Path
-``````
+```
 set GOPATH=%CD%
-``````
-
-### Do it before start program
-``````
-
-``````
+```
