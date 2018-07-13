@@ -10,20 +10,31 @@ type State struct {
 	Symbol string
 	Number int
 }
-
 type Size struct {
 	X int
 	Y int
 }
-
 type Board struct {
 	Slots  [][]State
 	Player Player
 	Size   Size
 }
-
 type Game struct {
-	Board
+	Player Player
+	Board  Board
+}
+
+func (game *Game) CheckBoard(number int) *State {
+	for i := 0; i < game.Board.Size.X; i++ {
+		for j := 0; j < game.Board.Size.Y; j++ {
+			if game.Board.Slots[i][j].Number == number {
+				return &game.Board.Slots[i][j]
+			}
+
+		}
+	}
+
+	return nil
 }
 
 func NewPlayer(name string) Player {
@@ -36,7 +47,7 @@ func NewBoard(player Player) Board {
 	for index := 0; index < 5; index++ {
 		slots[index] = make([]State, 5)
 	}
-
+	slots[3][3].Symbol = "O"
 	return Board{
 		Slots:  slots,
 		Player: player,
