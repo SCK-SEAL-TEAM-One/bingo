@@ -42,13 +42,24 @@ func NewBoard(player Player) Board {
 	}
 }
 
+func NewGame(player Player) Game {
+	return Game{Player: player, Board: NewBoard(player)}
+}
+
+func (g Game) FillBoard(state *State) bool {
+	if state.Symbol == "" {
+		state.Symbol = "O"
+		return true
+	}
+	return false
+}
+
 func (g *Game) CheckBoard(number int) *State {
 	for i := 0; i < g.Board.Size.X; i++ {
 		for j := 0; j < g.Board.Size.Y; j++ {
 			if g.Board.Slots[i][j].Number == number {
 				return &g.Board.Slots[i][j]
 			}
-
 		}
 	}
 	return nil
@@ -68,6 +79,5 @@ func (g Game) CheckBingo() bool {
 }
 
 func (g Game) GetWinner() string {
-
 	return g.Board.Player.Name
 }
