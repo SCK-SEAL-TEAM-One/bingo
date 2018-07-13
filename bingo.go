@@ -59,3 +59,8 @@ func NewBoard(player Player) Board {
 		Size:   Size{X: 5, Y: 5},
 	}
 }
+
+func (g Game) GetWinner() string {
+
+	return g.Board.Player.Name
+}

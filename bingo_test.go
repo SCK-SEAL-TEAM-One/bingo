@@ -67,3 +67,32 @@ func Test_Draw_Random_Between_1_To_75_Should_Be_13(t *testing.T) {
 	}
 
 }
+
+func Test_GetWinner_Should_Be_Aey(t *testing.T) {
+	expected := "Aey"
+	game := Game{
+		Board: Board{
+			Player: Player{Name: "Aey"},
+		},
+	}
+
+	actual := game.GetWinner()
+
+	if actual != expected {
+		t.Errorf("expected %v but got %v ", expected, actual)
+	}
+}
+func Test_GetWinner_Should_Be_Aoi(t *testing.T) {
+	expected := "Aoi"
+	game := Game{
+		Board: Board{
+			Player: Player{Name: "Aoi"},
+		},
+	}
+
+	actual := game.GetWinner()
+
+	if actual != expected {
+		t.Errorf("expected %v but got %v ", expected, actual)
+	}
+}
