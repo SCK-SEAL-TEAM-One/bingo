@@ -28,7 +28,11 @@ type Game struct {
 func (g Game) Draw() int {
 
 	return rand.Intn(75) + 1
+}
 
+func NewPlayer(name string) Player {
+	playerStruct := Player{Name: name}
+	return playerStruct
 }
 
 func NewBoard(player Player) Board {
