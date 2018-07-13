@@ -94,7 +94,7 @@ func Test_Draw_Random_Between_1_To_75_Should_Be_13(t *testing.T) {
 }
 
 func Test_NewGame_Input_Aey_Should_Be_Board_Player_Aey(t *testing.T) {
-	playerName := Player{Name: "Aey"}
+	player := Player{Name: "Aey"}
 	expected := Game{
 		Player: Player{
 			Name: "Aey",
@@ -103,7 +103,7 @@ func Test_NewGame_Input_Aey_Should_Be_Board_Player_Aey(t *testing.T) {
 			Player: Player{Name: "Aey"},
 		},
 	}
-	actual := NewGame(playerName)
+	actual := NewGame(player)
 
 	if actual.Board.Player != expected.Board.Player {
 		t.Errorf("Expected is %v but got %v", expected, actual)
@@ -113,11 +113,9 @@ func Test_NewGame_Input_Aey_Should_Be_Board_Player_Aey(t *testing.T) {
 func Test_FillBoard_Input_Pointer_State_Should_Be_True(t *testing.T){
 	state := State{Symbol:"", Number: 15}
 	addressState := &state 
-	game := Game{
-		Board: Board{
-			Player: Player{Name: "Aoi"},
-		},
-	}
+	player :=NewPlayer("Aoi")
+	game := NewGame(player)
+	
 	expected := true
 	actual := game.FillBoard(addressState)
 
