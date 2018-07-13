@@ -20,6 +20,10 @@ type Board struct {
 	Size   Size
 }
 
+type Game struct {
+	Board
+}
+
 func NewPlayer(name string) Player {
 	playerStruct := Player{Name: name}
 	return playerStruct
@@ -36,4 +40,8 @@ func NewBoard(player Player) Board {
 		Player: player,
 		Size:   Size{X: 5, Y: 5},
 	}
+}
+
+func (g *Game) CheckBingo() bool {
+	return false
 }
