@@ -26,9 +26,6 @@ type Game struct {
 	Board
 }
 
-type Game struct {
-}
-
 func (g Game) Draw() int {
 
 	return rand.Intn(75) + 1
@@ -55,4 +52,12 @@ func NewBoard(player Player) Board {
 func NewGame(player Player) Game {
 
 	return Game{Player: player, Board: NewBoard(player)}
+}
+
+func FillBoard(state *State) bool{
+	if state.Symbol ==  "" {
+		state.Symbol = "O" 
+		return true 
+	} 
+	return false
 }
