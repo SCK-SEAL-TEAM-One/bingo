@@ -1,5 +1,7 @@
 package bingo
 
+import "math/rand"
+
 type Player struct {
 	Name string
 }
@@ -22,6 +24,19 @@ type Board struct {
 type Game struct {
 	Player
 	Board
+}
+
+type Game struct {
+}
+
+func (g Game) Draw() int {
+
+	return rand.Intn(75) + 1
+}
+
+func NewPlayer(name string) Player {
+	playerStruct := Player{Name: name}
+	return playerStruct
 }
 
 func NewBoard(player Player) Board {
