@@ -23,6 +23,7 @@ type Board struct {
 }
 
 type Game struct {
+	Board
 }
 
 func (g Game) Draw() int {
@@ -46,4 +47,9 @@ func NewBoard(player Player) Board {
 		Player: player,
 		Size:   Size{X: 5, Y: 5},
 	}
+}
+
+func (g Game) GetWinner() string {
+
+	return g.Board.Player.Name
 }
