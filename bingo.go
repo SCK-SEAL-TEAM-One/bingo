@@ -42,11 +42,11 @@ func NewBoard(player Player) Board {
 	}
 }
 
-func (game *Game) CheckBoard(number int) *State {
-	for i := 0; i < game.Board.Size.X; i++ {
-		for j := 0; j < game.Board.Size.Y; j++ {
-			if game.Board.Slots[i][j].Number == number {
-				return &game.Board.Slots[i][j]
+func (g *Game) CheckBoard(number int) *State {
+	for i := 0; i < g.Board.Size.X; i++ {
+		for j := 0; j < g.Board.Size.Y; j++ {
+			if g.Board.Slots[i][j].Number == number {
+				return &g.Board.Slots[i][j]
 			}
 
 		}
@@ -59,7 +59,12 @@ func (g Game) Draw() int {
 }
 
 func (g Game) CheckBingo() bool {
-	return false
+	for i := 0; i < g.Board.Size.Y; i++ {
+		if g.Board.Slots[i][0].Symbol == "-" {
+			return false
+		}
+	}
+	return true
 }
 
 func (g Game) GetWinner() string {
